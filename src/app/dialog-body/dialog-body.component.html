@@ -1,0 +1,26 @@
+<div class="container">
+  <h2 mat-dialog-title>This is a Dialog title</h2>
+
+  <mat-dialog-content>
+    <form [formGroup]="videoForm">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Video URL</mat-label>
+        <input matInput formControlName="url" />
+      </mat-form-field>
+        <mat-label>Image to display</mat-label><br><br>
+        <input type="file" title=" " (change)="onFileSelect($event)" class="custom-file-input" id="customFile" />
+        <br>
+        <p *ngIf="fileError" style="color:red"> Wrong file type selected, or file size exceeded 300 KB.</p>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button *ngIf="videoForm.valid && !fileError" style="background-color: rgb(7, 138, 199); color: white;" color="primary" class="mat-raised-button" (click)="saveVideo()">Save</button>
+    <button class="mat-raised-button" (click)="close()">Close</button>
+  </mat-dialog-actions>
+</div>

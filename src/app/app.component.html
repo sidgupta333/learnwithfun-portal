@@ -1,0 +1,54 @@
+<ng-http-loader></ng-http-loader>
+<nav class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Fun With Learn</a>
+</nav>
+<br><br>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="videoId">
+      <th mat-header-cell *matHeaderCellDef> Video Id </th>
+      <td mat-cell *matCellDef="let element"> {{element?.videoId}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let element"> {{element?.title}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="url">
+      <th mat-header-cell *matHeaderCellDef> URL </th>
+      <td mat-cell *matCellDef="let element"><a [href]="element?.url" target="_blank">{{element?.url}}</a> </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef> Image </th>
+      <td mat-cell *matCellDef="let element"> 
+      <img [src]="element?.imageUrl" width="150" alt="">  
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element"> <button style="background-color: rgb(240, 34, 120);"  (click)="deleteVideo(element)" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      <mat-icon>delete</mat-icon>
+    </button> </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
+<div class="add-button">
+  <button  (click)="openDialog()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
