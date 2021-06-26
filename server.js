@@ -12,5 +12,5 @@ app.get('/*', function(req, res) {
 });
 
 // Start the app by listening on the default Heroku port
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
 console.log("Learn with fun portal started on port: 3000");
